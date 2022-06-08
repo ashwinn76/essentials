@@ -3,9 +3,11 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
+	"postCreateCommand": "./install_python_reqs.sh",
 	"extensions": [
-		"ms-vscode.cpptools",
-		"ms-vscode.cmake-tools"
+		"ms-vscode.cpptools-extension-pack",
+		"ms-python.python",
+		"matepek.vscode-catch2-test-adapter"
 	],
 
 	"runArgs": ["--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
