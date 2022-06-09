@@ -13,5 +13,5 @@
 
 	"remoteUser": "ashwin.docker",
 
-	"postCreateCommand": "./install_python_reqs.sh"
+	"postCreateCommand": "./post_container_creation.sh"
 }
