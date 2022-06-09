@@ -36,3 +36,25 @@ git config --global alias.lc "!f() { COMMENT=\${1-\"tmp\"}; git add *; git cm \"
 git config --global alias.lp "!f() { git lc \"\$1\"; BRANCH=\$(git cb); git mp \${2-\$BRANCH}; }; f"  #lazypush. It will do lazycommit and then push your branch to origin.
 git config --global alias.lpf "!f() { git lc \"\$1\"; BRANCH=\$(git cb); git mpf \${2-\$BRANCH}; }; f" #lazypushforce
 git config --global alias.cwl "!f() { MSG=\$(git log -1 --pretty=%B); git commit -m \"\$MSG\"; git em; }; f" #create a commit with same message as last commit and give option to edit commit message
+
+
+
+# C++ requirements
+sudo apt update
+
+sudo apt install gcc-10 g++-10
+
+sudo apt install clang-format-11
+
+sudo apt install cppcheck
+
+sudo apt install libcurl4-openssl-dev
+
+sudo apt install nlohmann-json3-dev
+
+
+
+# Python requirements
+pip3 install pytest-flake8
+
+pip3 install -r requirements.txt

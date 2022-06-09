@@ -3,20 +3,15 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-	"postCreateCommand": "./install_python_reqs.sh",
 	"extensions": [
 		"ms-vscode.cpptools-extension-pack",
 		"ms-python.python",
 		"matepek.vscode-catch2-test-adapter"
 	],
 
-	"runArgs": ["--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
+	"runArgs": ["--net=host", "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
 
 	"remoteUser": "ashwin.docker",
 
-	"features": {
-		"git": "latest",
-		"git-lfs": "latest",
-		"python": "3.9"
-	}
+	"postCreateCommand": "./install_python_reqs.sh"
 }
