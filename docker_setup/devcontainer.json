@@ -11,5 +11,7 @@
 
 	"runArgs": ["--net=host", "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
 
+	"remoteUser": "vscode",
+
 	"postCreateCommand": "./scripts/post_container_creation.sh"
 }
