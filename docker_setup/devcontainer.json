@@ -11,7 +11,5 @@
 
 	"runArgs": ["--net=host", "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
 
-	"remoteUser": "ashwin.docker",
-
 	"postCreateCommand": "./post_container_creation.sh"
 }

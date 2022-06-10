@@ -2,13 +2,7 @@
 
 # [Choice] Ubuntu version (use ubuntu-22.04 or ubuntu-18.04 on local arm64/Apple Silicon): ubuntu-22.04, ubuntu-20.04, ubuntu-18.04
 
-FROM ubuntu:22.04
-
-COPY ./setup_git_aliases.sh /tmp/
-RUN chmod +x /tmp/setup_git_aliases.sh && /tmp/setup_git_aliases.sh && rm -f /tmp/setup_git_aliases.sh
-
-COPY ./install_cpp_reqs.sh /tmp/
-RUN chmod +x /tmp/install_cpp_reqs.sh && /tmp/install_cpp_reqs.sh && rm -f /tmp/install_cpp_reqs.sh
+FROM mcr.microsoft.com/vscode/devcontainers/base:ubuntu-22.04
 
 # [Optional] Uncomment this section to install additional OS packages.
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
