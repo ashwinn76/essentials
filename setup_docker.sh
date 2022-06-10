@@ -42,19 +42,21 @@ git config --global alias.cwl "!f() { MSG=\$(git log -1 --pretty=%B); git commit
 # C++ requirements
 sudo apt update
 
-sudo apt install gcc-10 g++-10
+sudo apt install -y gcc-10 g++-10
 
-sudo apt install clang-format-11
+sudo apt install -y clang-format-11
 
-sudo apt install cppcheck
+sudo apt install -y cppcheck
 
-sudo apt install libcurl4-openssl-dev
+sudo apt install -y libcurl4-openssl-dev
 
-sudo apt install nlohmann-json3-dev
+sudo apt install -y nlohmann-json3-dev
 
 
 
 # Python requirements
+sudo apt install -y python3-pip
+
 pip3 install pytest-flake8
 
 pip3 install -r requirements.txt
