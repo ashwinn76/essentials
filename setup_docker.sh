@@ -46,6 +46,8 @@ sudo apt install -y gcc-10 g++-10
 
 sudo apt install -y clang-format-11
 
+sudo apt install -y cmake
+
 sudo apt install -y cppcheck
 
 sudo apt install -y libcurl4-openssl-dev
