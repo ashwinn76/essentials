@@ -1,5 +1,5 @@
 {
-    "name": "C++ container",
+    "name": "cpp_container",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
