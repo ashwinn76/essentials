@@ -42,7 +42,7 @@ git config --global alias.cwl "!f() { MSG=\$(git log -1 --pretty=%B); git commit
 # C++ requirements
 sudo apt update
 
-sudo apt install -y gcc-10 g++-10
+sudo apt install -y build-essential
 
 sudo apt install -y clang-format-11
 
