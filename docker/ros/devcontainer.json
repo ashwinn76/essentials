@@ -1,5 +1,5 @@
 {
-	"name": "cpp_ros_container",
+	"name": "ros_container",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
@@ -22,7 +22,8 @@
 		"--cap-add=SYS_PTRACE",
 		"--security-opt=seccomp:unconfined",
 		"--security-opt=apparmor:unconfined",
-		"--volume=/tmp/.X11-unix:/tmp/.X11-unix"
+		"--volume=/tmp/.X11-unix:/tmp/.X11-unix",
+		"--volume=${localEnv:HOME}/.credentials:/home/ros/.credentials"
 	],
 	"containerEnv": {
 		"DISPLAY": "${localEnv:DISPLAY}"
