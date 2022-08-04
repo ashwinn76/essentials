@@ -6,7 +6,7 @@ SHELL ["/bin/bash", "-c"]
 # RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 #     && apt-get -y install --no-install-recommends <your-package-list-here>
 
-RUN apt update && apt install -y build-essential clang-format-11 cmake cppcheck libcurl4-openssl-dev nlohmann-json3-dev python3-pip
+RUN apt update && apt install -y build-essential clang-format-11 cmake cppcheck libcurl4-openssl-dev nlohmann-json3-dev python3-pip libfmt-dev
 RUN pip install pytest-flake8
 
 RUN git config --global alias.url 'config --get remote.origin.url'
