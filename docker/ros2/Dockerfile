@@ -9,6 +9,8 @@ SHELL ["/bin/bash", "-c"]
 RUN apt update && apt install -y build-essential clang-format-11 cmake cppcheck libcurl4-openssl-dev nlohmann-json3-dev python3-pip libfmt-dev
 RUN pip install pytest-flake8
 
+USER ros
+
 RUN git config --global alias.url 'config --get remote.origin.url'
 RUN git config --global alias.rbe "!f() { REMOTE_URL=\$(git url); REFS=\$'refs/heads/'; git ls-remote --heads \$REMOTE_URL \"\$REFS\$1\" | wc -l; }; f" #remote branch exists. returns 1 for true and 0 for false
 RUN git config --global alias.cb  'symbolic-ref --short HEAD'  #current branch name
