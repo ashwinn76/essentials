@@ -1,5 +1,5 @@
 {
-	"name": "ros2_container",
+	"name": "ubuntu_container",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
@@ -19,18 +19,17 @@
 		"cschlosser.doxdocgen"
 	],
 	"runArgs": [
-		"--name=ros2_container",
+		"--name=ubuntu_container",
 		"--network=host",
 		"--cap-add=SYS_PTRACE",
 		"--security-opt=seccomp:unconfined",
 		"--security-opt=apparmor:unconfined",
+		"--volume=${localEnv:HOME}/.ssh:/root/.ssh",
 		"--volume=/tmp/.X11-unix:/tmp/.X11-unix",
-		"--volume=${localEnv:HOME}/.credentials:/home/ros/.credentials",
-		"--volume=${localEnv:HOME}/log:/home/ros/.ros/log"
+		"--volume=${localEnv:HOME}/.credentials:/home/root/.credentials",
+		"--volume=${localEnv:HOME}/log:/home/root/log"
 	],
 	"containerEnv": {
 		"DISPLAY": "${localEnv:DISPLAY}"
-	},
-	"remoteUser": "ros"
-	//	"postCreateCommand": "./scripts/post_container_creation.sh"
+	}
 }
