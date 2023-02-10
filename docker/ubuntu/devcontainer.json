@@ -26,10 +26,12 @@
 		"--security-opt=apparmor:unconfined",
 		"--volume=${localEnv:HOME}/.ssh:/root/.ssh",
 		"--volume=/tmp/.X11-unix:/tmp/.X11-unix",
-		"--volume=${localEnv:HOME}/.credentials:/home/root/.credentials",
-		"--volume=${localEnv:HOME}/log:/home/root/log"
+		"--volume=${localEnv:HOME}/.credentials:/root/.credentials",
+		"--volume=${localEnv:HOME}/.log:/root/.log"
 	],
 	"containerEnv": {
-		"DISPLAY": "${localEnv:DISPLAY}"
+		"DISPLAY": "${localEnv:DISPLAY}",
+		"CREDENTIALSDIR": "/root/.credentials",
+		"LOGDIR": "/root/.log"
 	}
 }
