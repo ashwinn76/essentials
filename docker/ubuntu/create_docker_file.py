@@ -3,26 +3,19 @@ import sys
 
 current_dir = os.path.dirname(__file__)
 
-arch = ""
-with os.popen("dpkg --print-architecture") as f:
-    arch = f.readline()
-
-arch = arch.rstrip()
-
 assert (len(sys.argv) > 2)
 
 user_name = sys.argv[1]
 user_email = sys.argv[2]
 
 with open(os.path.join(current_dir, "Dockerfile"), "w+") as docker_file:
-    if arch == "arm64":
-        docker_file.write("FROM arm64v8/ubuntu:20.04\n\n")
-    docker_file.writelines(["SHELL [\"/bin/bash\", \"-c\"]\n",
+    docker_file.writelines(["FROM arm64v8/ubuntu:20.04\n\n",
+                            "SHELL [\"/bin/bash\", \"-c\"]\n",
                            "\n",
                             "ARG DEBIAN_FRONTEND=noninteractive\n",
                             "ENV TZ=America/New_York\n",
                             "\n",
-                            "RUN apt update && apt install -y build-essential clang-format cmake cppcheck libcurl4-openssl-dev nlohmann-json3-dev python3-pip libfmt-dev libgtest-dev git g++-10\n",
+                            "RUN apt update && apt install -y build-essential clang-format cmake cppcheck libcurl4-openssl-dev nlohmann-json3-dev libspdlog-dev python3-pip libfmt-dev libgtest-dev git g++-10\n",
                             "RUN pip install -U pytest-flake8 autopep8\n",
                             "RUN  echo \"    IdentityFile ~/.ssh/id_rsa\" >> /etc/ssh/ssh_config\n",
                             "\n",
