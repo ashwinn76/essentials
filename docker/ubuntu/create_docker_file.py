@@ -1,3 +1,4 @@
+import json
 import os
 import sys
 
@@ -8,7 +9,7 @@ assert (len(sys.argv) > 2)
 user_name = sys.argv[1]
 user_email = sys.argv[2]
 
-with open(os.path.join(current_dir, "Dockerfile"), "w+") as docker_file:
+with open(".devcontainer/Dockerfile", "w+") as docker_file:
     docker_file.writelines(["FROM arm64v8/ubuntu:20.04\n\n",
                             "SHELL [\"/bin/bash\", \"-c\"]\n",
                            "\n",
@@ -64,3 +65,55 @@ with open(os.path.join(current_dir, "Dockerfile"), "w+") as docker_file:
     docker_file.write("RUN git config --global user.name \"%s\"\n" % user_name)
     docker_file.write(
         "RUN git config --global user.email \"%s\"\n" % user_email)
+
+
+devcontainer = {
+    "name": "ubuntu_container",
+    "build": {
+            "dockerfile": "Dockerfile"
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools-extension-pack",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "matepek.vscode-catch2-test-adapter",
+                "hediet.vscode-drawio",
+                "dotjoshjohnson.xml",
+                "zachflower.uncrustify",
+                "redhat.vscode-yaml",
+                "smilerobotics.urdf",
+                "streetsidesoftware.code-spell-checker",
+                "twxs.cmake",
+                "yzhang.markdown-all-in-one",
+                "cschlosser.doxdocgen"
+            ]
+        }
+    },
+    "runArgs": [
+        "--name=ubuntu_container",
+        "--network=host",
+        "--cap-add=SYS_PTRACE",
+        "--security-opt=seccomp:unconfined",
+        "--security-opt=apparmor:unconfined",
+        "--volume=${localEnv:HOME}/.ssh/id_rsa:/root/.ssh/id_rsa",
+        "--volume=${localEnv:HOME}/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub",
+        "--volume=/tmp/.X11-unix:/tmp/.X11-unix",
+        "--volume=${localEnv:HOME}/.credentials:/root/.credentials",
+        "--volume=${localEnv:HOME}/.log:/root/.log"
+    ],
+    "containerEnv": {
+        "DISPLAY": "${localEnv:DISPLAY}",
+        "CREDENTIALSDIR": "/root/.credentials",
+        "LOGDIR": "/root/.log",
+    }
+}
+
+source_dir = os.path.basename(os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__))))
+devcontainer["containerEnv"]["SOURCEDIR"] = "/workspaces/%s" % source_dir
+devcontainer["containerEnv"]["BINARYDIR"] = "/workspaces/%s/build" % source_dir
+
+with open(".devcontainer/devcontainer.json", "w+") as devcontainer_file:
+    json.dump(devcontainer, devcontainer_file, indent='\t')
