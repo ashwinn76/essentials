@@ -2,22 +2,20 @@ import json
 import os
 import sys
 
-current_dir = os.path.dirname(__file__)
-
 assert (len(sys.argv) > 2)
 
 user_name = sys.argv[1]
 user_email = sys.argv[2]
 
 with open(".devcontainer/Dockerfile", "w+") as docker_file:
-    docker_file.writelines(["FROM arm64v8/ubuntu:20.04\n\n",
+    docker_file.writelines(["FROM arm64v8/ubuntu:22.04\n\n",
                             "SHELL [\"/bin/bash\", \"-c\"]\n",
                            "\n",
                             "ARG DEBIAN_FRONTEND=noninteractive\n",
                             "ENV TZ=America/New_York\n",
                             "\n",
                             "RUN apt update && apt install -y build-essential clang-format cmake cppcheck libcurl4-openssl-dev nlohmann-json3-dev libspdlog-dev python3-pip libfmt-dev libgtest-dev git g++-10\n",
-                            "RUN pip install -U pytest-flake8 autopep8\n",
+                            "RUN pip install -U pyzmq pytest-flake8 autopep8\n",
                             "RUN  echo \"    IdentityFile ~/.ssh/id_rsa\" >> /etc/ssh/ssh_config\n",
                             "\n",
                             "RUN git config --global alias.url 'config --get remote.origin.url'\n",
@@ -110,8 +108,7 @@ devcontainer = {
     }
 }
 
-source_dir = os.path.basename(os.path.dirname(
-    os.path.dirname(os.path.abspath(__file__))))
+source_dir = os.path.basename(os.getcwd())
 devcontainer["containerEnv"]["SOURCEDIR"] = "/workspaces/%s" % source_dir
 devcontainer["containerEnv"]["BINARYDIR"] = "/workspaces/%s/build" % source_dir
 
